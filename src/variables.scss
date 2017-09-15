@@ -1,4 +1,15 @@
 
-$lightTextColor: #FFFFFF;
-$primaryColor: #093E76;
-$primaryDark: #041E38;
+$lightColor: #FFFFFF;
+$shadowColor: rgba(20, 20, 20, .5);
+$primaryColor: #003F91;
+$primaryDark: #1B264F;
+$secondaryColor: #FF4E00;
+$successColor: #8EA604;
+$successText: #4A5604;
+$warningColor: #F0A202;
+$warningText: #895C01;
+$errorColor: #92140C;
+$errorText: #E87B74;
+
+$background: $primaryDark;
+$textColor: $lightColor;
