@@ -1,0 +1,35 @@
+{
+  "transform": {
+    ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+  },
+  "testRegex": "\\.spec\\.(ts|tsx|js)$",
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js"
+  ],
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|svg|ttf|woff|woff2)$": "<rootDir>/.config/__mocks__/emptyMock.js",
+    "\\.(s?css)$": "identity-obj-proxy"
+  },
+  "rootDir": "..",
+  "globals": {
+    "ts-jest": {
+      "tsConfigFile": "./.config/tsconfig.json"
+    }
+  },
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts",
+    "!**/__tests__/**"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 20,
+      "functions": 20,
+      "lines": 20,
+      "statements": 20
+    }
+  }
+}
