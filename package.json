@@ -6,7 +6,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently 'webpack-dev-server --config .config/webpack.config.js' 'sleepms 5000 && electron app/dev.js'",
+    "start": "scripts/parallelRace.js start:server start:electron",
+    "start:server": "webpack-dev-server --config .config/webpack.config.js",
+    "start:electron": "sleepms 5000 && electron app/dev.js",
     "build": "NODE_ENV=prod run-s intermediates bundle package generateOutputs",
     "test": "run-s test:lint test:unit",
     "test:lint": "tslint --config .config/tslint.json --project .config/tsconfig.json",
@@ -22,6 +24,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "electron-log": "^2.2.9",
     "rxjs": "^5.4.3"
   },
   "devDependencies": {
@@ -68,6 +71,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0",
+    "resolve-url-loader": "^2.1.0",
     "rimraf": "^2.6.2",
     "roboto-fontface": "^0.8.0",
     "sass-loader": "^6.0.6",

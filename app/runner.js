@@ -1,5 +1,6 @@
 
 const Observable = require('rxjs/observable').Observable
+const log = require('electron-log')
 
 const electron = require('electron')
 // Module to control application life.
@@ -19,21 +20,21 @@ let mainWindow
 
 module.exports = function(root, appName) {
   return new Observable(subscriber => {
-    console.log('starting app with root', root)
+    log.info('starting app with root', root)
     function createWindow() {
-      console.log('creating window...')
+      log.info('creating window...')
       mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         title: appName
       })
-      const windowUrl = `${root}/index.html`
-      console.log('url', windowUrl)
+      const windowUrl = path.join(root, 'index.html')
+      log.info('url', windowUrl)
       mainWindow.loadURL(windowUrl)
       mainWindow.on('closed', function () {
         mainWindow = null
       })
-      mainWindow.on('error', console.error)
+      mainWindow.on('error', log.error)
       subscriber.next(mainWindow)
     }
     
@@ -50,6 +51,6 @@ module.exports = function(root, appName) {
         createWindow()
       }
     })
-    app.on('error', console.error)
+    app.on('error', log.error)
   })
 }
