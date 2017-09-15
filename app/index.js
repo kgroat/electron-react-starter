@@ -6,5 +6,5 @@ const runner = require('./runner')
 const package = require('./package.json')
 
 log.info('got here')
-const fileLocation = path.join(__dirname, './dist')
+const fileLocation = path.join(__dirname, './bundle.asar')
 runner(`file://${fileLocation}`, package.appName).subscribe()
