@@ -22,9 +22,7 @@ All of the application outputs will be generated into their own subdirectory of 
 ### Development
 
 #### Testing
-To run linting and tests, run `npm test` in the repository root directory.
-
-To run only linting or tests, the command would instead be `npm run test:lint` or `npm run test:unit` respectively.
+To run tests, run `npm test` in the repository root directory.  To run linting, run `npm run lint`.  To run both together, run `npm run check`
 
 #### Storybook
 To see each component in use, run `npm run storybook` to launch storybook.
