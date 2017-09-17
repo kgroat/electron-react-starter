@@ -22,6 +22,22 @@ $greyText: rgba($primaryDarkText, 0.5);
     color: $greyText;
   }
 
+  .submitButton {
+    height: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    outline: none;
+    padding: 0;
+    padding-left: 1.4em;
+    margin-top: -0.5em;
+
+    .icon, .icon.disabled {
+      padding-left: 0;
+    }
+  }
+
   .icon {
     @include icon(inherit, $hoverColor);
     

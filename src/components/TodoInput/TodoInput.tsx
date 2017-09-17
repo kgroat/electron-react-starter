@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 
-import { todoInput, title, titleDefault, icon, disabled } from './TodoInput.scss'
+import { todoInput, title, titleDefault, submitButton, icon, disabled } from './TodoInput.scss'
 
 export interface State {
   name: string
@@ -24,7 +24,8 @@ export default class TodoInput extends React.Component<Props, State> {
   toggleChecked = (checked = !this.state.checked) =>
     this.setState({ checked })
 
-  onPlusClicked = () => {
+  onAdd = (ev) => {
+    ev.preventDefault()
     if (!this.state.name) {
       return
     }
@@ -39,12 +40,14 @@ export default class TodoInput extends React.Component<Props, State> {
     const checkboxIcon = this.state.checked ? 'checkbox-marked-outline' : 'checkbox-blank-outline'
 
     return (
-      <div className={todoInput}>
+      <form className={todoInput} onSubmit={this.onAdd}>
         <input className={title} onChange={this.onNameChange} value={this.state.name} />
         { !this.state.name ? <span className={titleDefault}>Choose Name</span> : '' }
         <i onClick={() => this.toggleChecked()} className={`checkbox mdi mdi-${checkboxIcon} ${icon}`} />
-        <i onClick={this.onPlusClicked} className={`mdi mdi-plus-box ${icon} ${!this.state.name ? disabled : ''}`} />
-      </div>
+        <button type='submit' className={submitButton}>
+          <i className={`mdi mdi-plus-box ${icon} ${!this.state.name ? disabled : ''}`} />
+        </button>
+      </form>
     )
   }
 }
