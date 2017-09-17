@@ -1,7 +1,7 @@
 
 const fs = require('fs')
 const path = require('path')
-const npm = require('npm')
+const spawn = require('child_process').spawn
 
 const package = require('../../package.json')
 
@@ -18,22 +18,22 @@ module.exports = function getDependencies() {
 function install() {
   console.log('Installing production dependencies...')
   return new Promise((resolve, reject) => {
+    const onExit = (code, signal) => {
+      if (code === 0 || signal === 'SIGINT' || signal === 'SIGTERM') {
+        console.log('Dependencies installed!')
+        resolve()
+      } else {
+        reject(code || signal)
+      }
+    }
+
     const cwd = process.cwd()
     process.chdir(outputDir)
-    npm.load(err => {
-      if (err) { reject(err) }
-      npm.commands.prefix([outputDir], err => {
-        if (err) { reject(err) }
-        npm.commands.install(getDependencyTags(), (err, res1, res2, res3, res4, res5, res6) => {
-          if (err) { reject(err) }
-          else {
-            console.log('Dependencies installed!')
-            process.chdir(cwd)
-            resolve()
-          }
-        })
-      })
-    })
+    const tags = getDependencyTags()
+    const child = spawn('npm', ['install', ...tags], { stdio: 'inherit' })
+    child.on('error', err => reject(err))
+    child.on('exit', onExit)
+    child.on('close', onExit)
   })
 }
 
