@@ -1,0 +1,26 @@
+
+@import '../../globalStyles/mixins';
+
+.todoArea {
+  .helperBar {
+    @include itemBox();
+    background: $secondaryLight;
+    color: $secondaryText;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    display: flex;
+
+    .title {
+      flex-grow: 1;
+    }
+
+    .hideDone {
+      flex-shrink: 1;
+      
+      .icon {
+        @include icon($secondaryText, $secondaryHover);
+        font-size: 1em;
+      }
+    }
+  }
+}
