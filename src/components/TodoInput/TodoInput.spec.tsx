@@ -16,13 +16,13 @@ describe('<TodoInput />', () => {
     })
   })
 
-  describe('user clicking on add icon', () => {
+  describe('user submitting on todo', () => {
     it('should not call onAdd if no name has been chosen', () => {
       const onAdd = jest.fn()
       const element = shallow(
         <TodoInput onAdd={onAdd} />
       )
-      element.findWhere(el => el.hasClass('mdi-plus-box')).simulate('click')
+      element.findWhere(el => el.is('form')).simulate('submit', { preventDefault: jest.fn() })
       expect(onAdd).not.toHaveBeenCalled()
     })
     it('should call onAdd with the name and false if a name has been chosen but the checkbox not checked', () => {
@@ -36,7 +36,7 @@ describe('<TodoInput />', () => {
           value: name
         }
       })
-      element.findWhere(el => el.hasClass('mdi-plus-box')).simulate('click')
+      element.findWhere(el => el.is('form')).simulate('submit', { preventDefault: jest.fn() })
       expect(onAdd).toHaveBeenCalledWith(name, false)
       expect(onAdd).toHaveBeenCalledTimes(1)
     })
@@ -52,7 +52,7 @@ describe('<TodoInput />', () => {
         }
       })
       element.findWhere(el => el.hasClass('checkbox')).simulate('click')
-      element.findWhere(el => el.hasClass('mdi-plus-box')).simulate('click')
+      element.findWhere(el => el.is('form')).simulate('submit', { preventDefault: jest.fn() })
       expect(onAdd).toHaveBeenCalledWith(name, true)
       expect(onAdd).toHaveBeenCalledTimes(1)
     })

@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<TodoInput /> snapshots should render 1`] = `
-<div
+<form
   className="todoInput"
+  onSubmit={[Function]}
 >
   <input
     className="title"
@@ -18,9 +19,13 @@ exports[`<TodoInput /> snapshots should render 1`] = `
     className="checkbox mdi mdi-checkbox-blank-outline icon"
     onClick={[Function]}
   />
-  <i
-    className="mdi mdi-plus-box icon disabled"
-    onClick={[Function]}
-  />
-</div>
+  <button
+    className="submitButton"
+    type="submit"
+  >
+    <i
+      className="mdi mdi-plus-box icon disabled"
+    />
+  </button>
+</form>
 `;

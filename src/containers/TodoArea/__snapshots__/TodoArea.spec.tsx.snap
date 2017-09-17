@@ -4,8 +4,9 @@ exports[`<TodoArea /> snapshots should render with 1 checked todo items 1`] = `
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -21,11 +22,15 @@ exports[`<TodoArea /> snapshots should render with 1 checked todo items 1`] = `
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -54,8 +59,9 @@ exports[`<TodoArea /> snapshots should render with 1 unchecked todo items 1`] = 
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -71,11 +77,15 @@ exports[`<TodoArea /> snapshots should render with 1 unchecked todo items 1`] = 
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -122,8 +132,9 @@ exports[`<TodoArea /> snapshots should render with 2 checked todo items 1`] = `
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -139,11 +150,15 @@ exports[`<TodoArea /> snapshots should render with 2 checked todo items 1`] = `
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -172,8 +187,9 @@ exports[`<TodoArea /> snapshots should render with 2 unchecked todo items 1`] = 
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -189,11 +205,15 @@ exports[`<TodoArea /> snapshots should render with 2 unchecked todo items 1`] = 
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -257,8 +277,9 @@ exports[`<TodoArea /> snapshots should render with 3 checked todo items 1`] = `
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -274,11 +295,15 @@ exports[`<TodoArea /> snapshots should render with 3 checked todo items 1`] = `
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -307,8 +332,9 @@ exports[`<TodoArea /> snapshots should render with 3 unchecked todo items 1`] = 
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -324,11 +350,15 @@ exports[`<TodoArea /> snapshots should render with 3 unchecked todo items 1`] = 
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -409,8 +439,9 @@ exports[`<TodoArea /> snapshots should render with 4 checked todo items 1`] = `
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -426,11 +457,15 @@ exports[`<TodoArea /> snapshots should render with 4 checked todo items 1`] = `
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -459,8 +494,9 @@ exports[`<TodoArea /> snapshots should render with 4 unchecked todo items 1`] = 
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -476,11 +512,15 @@ exports[`<TodoArea /> snapshots should render with 4 unchecked todo items 1`] = 
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -578,8 +618,9 @@ exports[`<TodoArea /> snapshots should render with 5 checked todo items 1`] = `
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -595,11 +636,15 @@ exports[`<TodoArea /> snapshots should render with 5 checked todo items 1`] = `
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -628,8 +673,9 @@ exports[`<TodoArea /> snapshots should render with 5 unchecked todo items 1`] = 
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -645,11 +691,15 @@ exports[`<TodoArea /> snapshots should render with 5 unchecked todo items 1`] = 
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
@@ -764,8 +814,9 @@ exports[`<TodoArea /> snapshots should render without any todo items 1`] = `
 <div
   className="todoArea"
 >
-  <div
+  <form
     className="todoInput"
+    onSubmit={[Function]}
   >
     <input
       className="title"
@@ -781,11 +832,15 @@ exports[`<TodoArea /> snapshots should render without any todo items 1`] = `
       className="checkbox mdi mdi-checkbox-blank-outline icon"
       onClick={[Function]}
     />
-    <i
-      className="mdi mdi-plus-box icon disabled"
-      onClick={[Function]}
-    />
-  </div>
+    <button
+      className="submitButton"
+      type="submit"
+    >
+      <i
+        className="mdi mdi-plus-box icon disabled"
+      />
+    </button>
+  </form>
   <div
     className="helperBar"
   >
