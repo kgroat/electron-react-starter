@@ -1,0 +1,26 @@
+
+@import './variables';
+
+@mixin itemBox() {
+  border-radius: 0.5em;
+  background: $primaryDark;
+  color: $primaryDarkText;
+  padding: 0.75em;
+  flex-direction: row;
+  box-shadow: 0 0.2em 0.1em $shadowColor;
+  margin: 0.25em;
+}
+
+@mixin icon($color, $hoverColor) {
+  flex-shrink: 1;
+  margin-top: -0.25em;
+  font-size: 1.8em;
+  height: 0;
+  padding-left: 0.75em;
+  cursor: pointer;
+  color: $color;
+
+  &:hover {
+    color: $hoverColor;
+  }
+}

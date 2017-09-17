@@ -1,9 +1,17 @@
 
 $lightColor: #FFFFFF;
+$offwhite: #FFF0DD;
+$hoverColor: #88ACD4;
 $shadowColor: rgba(20, 20, 20, .5);
+$primaryLight: #457DC2;
 $primaryColor: #003F91;
 $primaryDark: #1B264F;
+$primaryDarkText: $lightColor;
+$secondaryLight: #FF8D5D;
 $secondaryColor: #FF4E00;
+$secondaryDark: #8F2B00;
+$secondaryText: $primaryDark;
+$secondaryHover: $primaryLight;
 $successColor: #8EA604;
 $successText: #4A5604;
 $warningColor: #F0A202;
@@ -11,5 +19,5 @@ $warningText: #895C01;
 $errorColor: #92140C;
 $errorText: #E87B74;
 
-$background: $primaryDark;
-$textColor: $lightColor;
+$background: $offwhite;
+$textColor: $primaryDark;
