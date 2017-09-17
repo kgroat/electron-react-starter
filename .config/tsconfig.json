@@ -11,7 +11,14 @@
     "sourceMap": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2015"
+    "target": "es2015",
+    "baseUrl": "../src",
+    "paths": {
+      "components": ["./components"],
+      "containers": ["./containers"],
+      "actions": ["./redux/actions/*"],
+      "state": ["./redux/state"]
+    }
   },
   "include": [
     "../src"
