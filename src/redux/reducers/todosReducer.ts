@@ -26,7 +26,7 @@ const actors: ActorMap<Todo[]> = {
       checked
     }
   ],
-  [deleteTodoType]: (prev, { id }: DeleteTodoAction) => 
+  [deleteTodoType]: (prev, { id }: DeleteTodoAction) =>
     prev.filter(todo => todo.id !== id),
   [renameTodoType]: passThrough,
   [toggleTodoType]: passThrough

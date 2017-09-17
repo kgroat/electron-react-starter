@@ -22,7 +22,7 @@ describe('<TodoItem />', () => {
     })
     it('should render with a delete icon', () => {
       const tree = create(
-        <TodoItem name='Get milk' onDelete={() => {}} />
+        <TodoItem name='Get milk' onDelete={jest.fn()} />
       )
       expect(tree).toMatchSnapshot()
     })
@@ -48,7 +48,7 @@ describe('<TodoItem />', () => {
       expect(onChange).toHaveBeenCalledTimes(1)
     })
   })
-  
+
   describe('user clicking on delete', () => {
     it('should call onDelete once', () => {
       const onDelete = jest.fn()

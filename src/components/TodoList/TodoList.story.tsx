@@ -30,10 +30,6 @@ const items: Todo[] = [
   }
 ]
 
-storiesOf('TodoList', module)
-  .add('display', () => <TodoList items={items} toggleTodo={checkAction} deleteTodo={deleteAction} />)
-  .add('interactible', () => <Interactible />)
-
 class Interactible extends React.Component<{}, { items: Todo[] }> {
   state = {
     items: [...items]
@@ -52,7 +48,7 @@ class Interactible extends React.Component<{}, { items: Todo[] }> {
     }))
     checkAction(id, checked)
   }
-  
+
   deleteItem = (id: string) => {
     deleteAction(id)
     this.setState(({ items }) => ({
@@ -60,7 +56,7 @@ class Interactible extends React.Component<{}, { items: Todo[] }> {
     }))
   }
 
-  render() {
+  render () {
     return (
       <TodoList
         items={this.state.items}
@@ -69,3 +65,7 @@ class Interactible extends React.Component<{}, { items: Todo[] }> {
     )
   }
 }
+
+storiesOf('TodoList', module)
+  .add('display', () => <TodoList items={items} toggleTodo={checkAction} deleteTodo={deleteAction} />)
+  .add('interactible', () => <Interactible />)

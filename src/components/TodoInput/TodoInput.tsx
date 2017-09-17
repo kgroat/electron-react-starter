@@ -21,7 +21,7 @@ export default class TodoInput extends React.Component<Props, State> {
   setName = (name: string) =>
     this.setState({ name })
 
-  toggleChecked = (checked = !this.state.checked) => 
+  toggleChecked = (checked = !this.state.checked) =>
     this.setState({ checked })
 
   onPlusClicked = () => {
@@ -35,9 +35,9 @@ export default class TodoInput extends React.Component<Props, State> {
   onNameChange = (ev: React.ChangeEvent<HTMLInputElement>) =>
     this.setName(ev.currentTarget.value)
 
-  render() {
+  render () {
     const checkboxIcon = this.state.checked ? 'checkbox-marked-outline' : 'checkbox-blank-outline'
-  
+
     return (
       <div className={todoInput}>
         <input className={title} onChange={this.onNameChange} value={this.state.name} />

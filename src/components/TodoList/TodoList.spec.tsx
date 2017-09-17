@@ -7,7 +7,7 @@ import { Todo } from 'state'
 import TodoItem from 'components/TodoItem'
 import TodoList from './'
 
-function createTodo(id: string, checked: boolean): Todo {
+function createTodo (id: string, checked: boolean): Todo {
   return {
     id,
     name: 'Get milk',
@@ -15,12 +15,10 @@ function createTodo(id: string, checked: boolean): Todo {
   }
 }
 
-function createTodos(count: number, checked): Todo[] {
+function createTodos (count: number, checked): Todo[] {
   return Array.from(Array(count))
     .map((v, idx) => createTodo(`${idx}`, checked))
 }
-
-const noop = () => {}
 
 describe('<TodoList />', () => {
   describe('snapshots', () => {
@@ -28,7 +26,7 @@ describe('<TodoList />', () => {
       it(`should render correctly with ${i} unchecked todos`, () => {
         const todos = createTodos(i, false)
         const tree = create(
-          <TodoList items={todos} toggleTodo={noop} deleteTodo={noop} />
+          <TodoList items={todos} toggleTodo={jest.fn()} deleteTodo={jest.fn()} />
         )
         expect(tree).toMatchSnapshot()
       })
@@ -36,7 +34,7 @@ describe('<TodoList />', () => {
       it(`should render correctly with ${i} checked todos`, () => {
         const todos = createTodos(i, true)
         const tree = create(
-          <TodoList items={todos} toggleTodo={noop} deleteTodo={noop} />
+          <TodoList items={todos} toggleTodo={jest.fn()} deleteTodo={jest.fn()} />
         )
         expect(tree).toMatchSnapshot()
       })
@@ -49,7 +47,7 @@ describe('<TodoList />', () => {
         const todos = [createTodo(id, false)]
         const deleteTodo = jest.fn()
         const element = shallow(
-          <TodoList items={todos} deleteTodo={deleteTodo} toggleTodo={noop} />
+          <TodoList items={todos} deleteTodo={deleteTodo} toggleTodo={jest.fn()} />
         )
         element.find(TodoItem).props().onDelete()
         expect(deleteTodo).toHaveBeenCalledWith(id)
@@ -57,14 +55,14 @@ describe('<TodoList />', () => {
       })
     })
   })
-  
+
   describe('user clicking on checkbox icon', () => {
     ['id1', 'id2', 'id3'].map(id => {
       it(`should call deleteTodo with ${id} and true once`, () => {
         const todos = [createTodo(id, false)]
         const toggleTodo = jest.fn()
         const element = shallow(
-          <TodoList items={todos} toggleTodo={toggleTodo} deleteTodo={noop} />
+          <TodoList items={todos} toggleTodo={toggleTodo} deleteTodo={jest.fn()} />
         )
         element.find(TodoItem).props().onChange(true)
         expect(toggleTodo).toHaveBeenCalledWith(id, true)
@@ -74,7 +72,7 @@ describe('<TodoList />', () => {
         const todos = [createTodo(id, true)]
         const toggleTodo = jest.fn()
         const element = shallow(
-          <TodoList items={todos} toggleTodo={toggleTodo} deleteTodo={noop} />
+          <TodoList items={todos} toggleTodo={toggleTodo} deleteTodo={jest.fn()} />
         )
         element.find(TodoItem).props().onChange(false)
         expect(toggleTodo).toHaveBeenCalledWith(id, false)

@@ -10,8 +10,9 @@ describe('<TodoInput />', () => {
   describe('snapshots', () => {
     it('should render', () => {
       const tree = create(
-        <TodoInput onAdd={() => {}} />
+        <TodoInput onAdd={jest.fn()} />
       )
+      expect(tree).toMatchSnapshot()
     })
   })
 

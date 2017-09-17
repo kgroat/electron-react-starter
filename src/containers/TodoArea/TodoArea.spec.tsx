@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { create } from 'react-test-renderer'
 import { Provider } from 'react-redux'
-import { Store, Dispatch, Action } from 'redux'
+import { Store, Dispatch } from 'redux'
 import { shallow } from 'enzyme'
 
 import { State, Todo } from 'state'
@@ -24,23 +24,23 @@ let state: State
 let dispatch: Dispatch<State> & jest.Mock<any>
 
 const store = {
-  getState() {
+  getState () {
     return state
   },
-  get dispatch() {
+  get dispatch () {
     return dispatch as Dispatch<State>
   },
   subscribe: jest.fn(),
   replaceReducer: jest.fn()
 } as Store<State>
 
-function resetState() {
+function resetState () {
   state = {
     todos: []
   } as State
 }
 
-function createTodo(id: string, checked: boolean): Todo {
+function createTodo (id: string, checked: boolean): Todo {
   return {
     id,
     name: 'Get milk',
@@ -48,7 +48,7 @@ function createTodo(id: string, checked: boolean): Todo {
   }
 }
 
-function createTodos(count: number, checked): Todo[] {
+function createTodos (count: number, checked): Todo[] {
   return Array.from(Array(count))
     .map((v, idx) => createTodo(`${idx}`, checked))
 }
@@ -129,21 +129,21 @@ describe('<TodoArea />', () => {
       expect(actual).toEqual(expected)
     })
   })
-  
+
   describe('user checks or unchecks a todo item', () => {
     ['id1', 'id2', 'id3'].map(id => {
       [true, false].map(checked => {
         it(`should call toggleTodo with ${id} and ${checked} once`, () => {
           const toggleTodo = jest.fn()
-  
+
           const element = shallow(<TodoAreaBase {...defaultProps} toggleTodo={toggleTodo} />)
-    
+
           element.find(TodoList).props().toggleTodo(id, checked)
-    
+
           expect(toggleTodo).toBeCalledWith(id, checked)
           expect(toggleTodo).toHaveBeenCalledTimes(1)
         })
-        
+
         it(`should dispatch a ${toggleTodoType} action with id: ${id} and checked: ${checked} once`, () => {
           state.todos = [createTodo(id, true)]
           const expected: ToggleTodoAction = {
@@ -151,11 +151,11 @@ describe('<TodoArea />', () => {
             id,
             checked
           }
-  
+
           const element = shallow(<TodoArea />, { context: { store } })
-    
+
           element.find(TodoAreaBase).props().toggleTodo(expected.id, expected.checked)
-    
+
           expect(dispatch).toHaveBeenCalledTimes(1)
           const actual = dispatch.mock.calls[0][0]
           expect(actual).toEqual(expected)
@@ -168,11 +168,11 @@ describe('<TodoArea />', () => {
     ['id1', 'id2', 'id3'].map(id => {
       it(`should call deleteTodo with ${id} once`, () => {
         const deleteTodo = jest.fn()
-        
+
         const element = shallow(<TodoAreaBase {...defaultProps} deleteTodo={deleteTodo} />)
-  
+
         element.find(TodoList).props().deleteTodo(id)
-  
+
         expect(deleteTodo).toHaveBeenCalledWith(id)
         expect(deleteTodo).toHaveBeenCalledTimes(1)
       })
@@ -183,11 +183,11 @@ describe('<TodoArea />', () => {
           type: deleteTodoType,
           id
         }
-        
+
         const element = shallow(<TodoArea />, { context: { store } })
-  
+
         element.find(TodoAreaBase).props().deleteTodo(id)
-  
+
         expect(dispatch).toHaveBeenCalledTimes(1)
         const actual = dispatch.mock.calls[0][0]
         expect(actual).toEqual(expected)
@@ -205,23 +205,23 @@ describe('<TodoArea />', () => {
         const actual = element.find(TodoList).props().items.length
         expect(actual).toBe(expected)
       })
-  
+
       it(`should 0 todos if all are checked and the checkbox remains checked`, () => {
         const expected = 0
         const todos = createTodos(i, true)
         const element = shallow(<TodoAreaBase {...defaultProps} todos={todos} />)
-        
+
         const actual = element.find(TodoList).props().items.length
         expect(actual).toBe(expected)
       })
-  
+
       it(`should show ${i} todos if the checkbox is unchecked even if all are checked`, () => {
         const expected = i
         const todos = createTodos(i, true)
         const element = shallow(<TodoAreaBase {...defaultProps} todos={todos} />)
-        
+
         element.findWhere(el => el.hasClass(icon)).simulate('click')
-        
+
         const actual = element.find(TodoList).props().items.length
         expect(actual).toBe(expected)
       })

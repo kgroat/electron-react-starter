@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TodoInput /> snapshots should render 1`] = `
+<div
+  className="todoInput"
+>
+  <input
+    className="title"
+    onChange={[Function]}
+    value=""
+  />
+  <span
+    className="titleDefault"
+  >
+    Choose Name
+  </span>
+  <i
+    className="checkbox mdi mdi-checkbox-blank-outline icon"
+    onClick={[Function]}
+  />
+  <i
+    className="mdi mdi-plus-box icon disabled"
+    onClick={[Function]}
+  />
+</div>
+`;

@@ -34,7 +34,7 @@ export class TodoAreaBase extends React.Component<Props, LocalState> {
   toggleHideDone = (hideDone = !this.state.hideDone) =>
     this.setState({ hideDone })
 
-  render() {
+  render () {
     const { hideDone } = this.state
 
     const todos = hideDone
@@ -61,13 +61,13 @@ export class TodoAreaBase extends React.Component<Props, LocalState> {
   }
 }
 
-function mapStateToProps({ todos }: State): StateProps {
+function mapStateToProps ({ todos }: State): StateProps {
   return {
     todos
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<State>): DispatchProps {
+function mapDispatchToProps (dispatch: Dispatch<State>): DispatchProps {
   return {
     addTodo: (name, checked) => dispatch(addTodo({ name, checked })),
     toggleTodo: (id, checked) => dispatch(toggleTodo({ id, checked })),
