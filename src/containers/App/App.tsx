@@ -3,14 +3,15 @@ import * as React from 'react'
 import { Provider } from 'react-redux'
 
 import store from '../../redux/store'
+import TodoArea from 'containers/TodoArea'
 
-import './App.scss'
+import { appComponent } from './App.scss'
 
 export default () => {
   return (
     <Provider store={store}>
-      <div className='app-component'>
-        <h1>Hello, world!</h1>
+      <div className={appComponent}>
+        <TodoArea />
       </div>
     </Provider>
   )
