@@ -16,7 +16,7 @@
     "paths": {
       "components": ["./components"],
       "containers": ["./containers"],
-      "actions": ["./redux/actions/*"],
+      "actions": ["./redux/actions"],
       "state": ["./redux/state"]
     }
   },
