@@ -1,0 +1,409 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TodoList /> snapshots should render correctly with 0 checked todos 1`] = `
+<div
+  className="todoList"
+/>
+`;
+
+exports[`<TodoList /> snapshots should render correctly with 0 unchecked todos 1`] = `
+<div
+  className="todoList"
+/>
+`;
+
+exports[`<TodoList /> snapshots should render correctly with 1 checked todos 1`] = `
+<div
+  className="todoList"
+>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`<TodoList /> snapshots should render correctly with 1 unchecked todos 1`] = `
+<div
+  className="todoList"
+>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`<TodoList /> snapshots should render correctly with 2 checked todos 1`] = `
+<div
+  className="todoList"
+>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`<TodoList /> snapshots should render correctly with 2 unchecked todos 1`] = `
+<div
+  className="todoList"
+>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`<TodoList /> snapshots should render correctly with 3 checked todos 1`] = `
+<div
+  className="todoList"
+>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`<TodoList /> snapshots should render correctly with 3 unchecked todos 1`] = `
+<div
+  className="todoList"
+>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`<TodoList /> snapshots should render correctly with 4 checked todos 1`] = `
+<div
+  className="todoList"
+>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-marked-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`<TodoList /> snapshots should render correctly with 4 unchecked todos 1`] = `
+<div
+  className="todoList"
+>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="todoItem"
+  >
+    <span
+      className="title"
+    >
+      Get milk
+    </span>
+    <i
+      className="mdi mdi-delete deleteIcon"
+      onClick={[Function]}
+    />
+    <i
+      className="mdi mdi-checkbox-blank-outline checkboxIcon"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
