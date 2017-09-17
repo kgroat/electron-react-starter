@@ -1,6 +1,8 @@
 
-import { type as renameTodo, RenameTodoAction } from '../actions/renameTodo'
-import { type as toggleTodo, ToggleTodoAction } from '../actions/toggleTodo'
+import {
+  renameTodoType, RenameTodoAction,
+  toggleTodoType, ToggleTodoAction
+} from 'actions'
 
 import { ActorMap, buildReducer } from '../actorMap'
 import { Todo } from '../state'
@@ -8,11 +10,11 @@ import { Todo } from '../state'
 export const INITIAL_STATE: Todo = null
 
 const actors: ActorMap<Todo> = {
-  [renameTodo]: (prev, { name }: RenameTodoAction) => ({
+  [renameTodoType]: (prev, { name }: RenameTodoAction) => ({
     ...prev,
     name
   }),
-  [toggleTodo]: (prev, { checked }: ToggleTodoAction) => ({
+  [toggleTodoType]: (prev, { checked }: ToggleTodoAction) => ({
     ...prev,
     checked
   })

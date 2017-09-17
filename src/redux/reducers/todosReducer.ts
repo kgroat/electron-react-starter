@@ -1,9 +1,12 @@
 
 import * as uuid from 'uuid/v4'
 
-import { type as addTodo, AddTodoAction } from '../actions/addTodo'
-import { type as renameTodo } from '../actions/renameTodo'
-import { type as toggleTodo } from '../actions/toggleTodo'
+import {
+  addTodoType, AddTodoAction,
+  deleteTodoType, DeleteTodoAction,
+  renameTodoType,
+  toggleTodoType
+} from 'actions'
 
 import { ActorMap, buildReducer, buildPassThrough } from '../actorMap'
 import { Todo } from '../state'
@@ -15,7 +18,7 @@ export const INITIAL_STATE: Todo[] = []
 const passThrough = buildPassThrough(todoReducer)
 
 const actors: ActorMap<Todo[]> = {
-  [addTodo]: (prev, { name, checked = false }: AddTodoAction) => [
+  [addTodoType]: (prev, { name, checked = false }: AddTodoAction) => [
     ...prev,
     {
       id: uuid(),
@@ -23,8 +26,10 @@ const actors: ActorMap<Todo[]> = {
       checked
     }
   ],
-  [renameTodo]: passThrough,
-  [toggleTodo]: passThrough
+  [deleteTodoType]: (prev, { id }: DeleteTodoAction) => 
+    prev.filter(todo => todo.id !== id),
+  [renameTodoType]: passThrough,
+  [toggleTodoType]: passThrough
 }
 
 export default buildReducer(INITIAL_STATE, actors)
