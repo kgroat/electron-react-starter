@@ -1,2 +1,2 @@
 
-export { default } from './TodoItem'
+export { default, Props } from './TodoItem'

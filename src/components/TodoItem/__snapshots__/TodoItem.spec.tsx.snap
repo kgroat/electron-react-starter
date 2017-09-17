@@ -1,7 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TodoItem /> should render correctly 1`] = `
-<div>
-  Hello!
+exports[`<TodoItem /> snapshots should render checked without a delete icon 1`] = `
+<div
+  className="todoItem"
+>
+  <span
+    className="title"
+  >
+    Get milk
+  </span>
+  <i
+    className="mdi mdi-checkbox-marked-outline checkboxIcon"
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`<TodoItem /> snapshots should render unchecked without a delete icon 1`] = `
+<div
+  className="todoItem"
+>
+  <span
+    className="title"
+  >
+    Get milk
+  </span>
+  <i
+    className="mdi mdi-checkbox-blank-outline checkboxIcon"
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`<TodoItem /> snapshots should render with a delete icon 1`] = `
+<div
+  className="todoItem"
+>
+  <span
+    className="title"
+  >
+    Get milk
+  </span>
+  <i
+    className="mdi mdi-delete deleteIcon"
+    onClick={[Function]}
+  />
+  <i
+    className="mdi mdi-checkbox-blank-outline checkboxIcon"
+    onClick={[Function]}
+  />
 </div>
 `;

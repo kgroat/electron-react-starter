@@ -1,4 +1,19 @@
 
-.todo-item {
-  background: blue;
+@import '../../globalStyles/mixins';
+
+.todoItem {
+  @include itemBox();
+  display: flex;
+
+  .title {
+    flex-grow: 1;
+  }
+
+  .checkboxIcon {
+    @include icon(inherit, $hoverColor);
+  }
+
+  .deleteIcon {
+    @include icon($errorText, $errorColor);
+  }
 }
