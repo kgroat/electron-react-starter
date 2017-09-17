@@ -26,6 +26,8 @@ module.exports = function(root, appName) {
       mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
+        minWidth: 400,
+        minHeight: 400,
         title: appName
       })
       const windowUrl = path.join(root, 'index.html')
