@@ -40,9 +40,9 @@ function handlePlatforms (outputHelpers) {
   })).then(() => {
     console.log('Done!')
     if (errorMaps.length > 0) {
-      console.error(`Finished with ${errorMaps.count} errors.`)
+      console.error(`Finished with ${errorMaps.length} errors.`)
       errorMaps.forEach(logError)
-      process.exit(errorMaps.count)
+      process.exit(errorMaps.length)
     }
   })
 }
