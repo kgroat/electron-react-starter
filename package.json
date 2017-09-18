@@ -9,7 +9,7 @@
     "start": "scripts/parallelRace.js scss:types:watch start:server start:electron",
     "start:server": "webpack-dev-server --config .config/webpack.config.js",
     "start:electron": "sleepms 5000 && electron app/dev.js",
-    "build": "NODE_ENV=prod run-s intermediates bundle package generateOutputs",
+    "build": "NODE_ENV=production run-s intermediates bundle package generateOutputs",
     "test": "jest --config=.config/jest.json",
     "lint": "tslint --config .config/tslint.json --project .config/tsconfig.json",
     "check": "run-s test lint",
