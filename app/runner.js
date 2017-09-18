@@ -11,6 +11,8 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
+const config = require('./config')
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -18,7 +20,7 @@ let mainWindow
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-module.exports = function(root, appName) {
+module.exports = function(root) {
   return new Observable(subscriber => {
     log.info('starting app with root', root)
     function createWindow() {
@@ -28,19 +30,25 @@ module.exports = function(root, appName) {
         height: 600,
         minWidth: 400,
         minHeight: 400,
-        title: appName
+        title: config.appName
       })
       const windowUrl = path.join(root, 'index.html')
-      log.info('url', windowUrl)
-      mainWindow.loadURL(windowUrl)
       mainWindow.on('closed', function () {
         mainWindow = null
       })
       mainWindow.on('error', log.error)
+      mainWindow.webContents.on('did-finish-load', () => {
+        mainWindow.webContents.setLayoutZoomLevelLimits(-2, 2)
+      })
+      log.info('url', windowUrl)
+      mainWindow.loadURL(windowUrl)
       subscriber.next(mainWindow)
     }
     
-    app.on('ready', createWindow)
+    app.on('ready', () => {
+      createWindow()
+      electron.Menu.setApplicationMenu(require('./menu'))
+    })
     
     app.on('window-all-closed', function () {
       if (process.platform !== 'darwin') {

@@ -8,7 +8,7 @@ const debug = require('./debug')
 module.exports = function copyAppContent (platform, contentDir) {
   debug(platform, 'Copying app content...')
   return Promise.all([
-    copyAppIndex(contentDir),
+    copyAppDir(contentDir),
     copyAppRunner(contentDir),
     copyBundle(contentDir),
     copyPackage(contentDir),
@@ -19,10 +19,24 @@ module.exports = function copyAppContent (platform, contentDir) {
   })
 }
 
-function copyAppIndex(contentDir) {
-  const inputFile = path.join(__dirname, '../../app/index.js')
-  const targetFile = path.join(contentDir, 'index.js')
-  return copyFile(inputFile, targetFile)
+function copyAppDir(contentDir) {
+  const appDir = path.join(__dirname, '../../app')
+  return new Promise((resolve, reject) => {
+    fs.readdir(appDir, (err, files) => {
+      if (err) { return reject(err) }
+      else { resolve(files) }
+    })
+  }).then(files => {
+    return Promise.all(files.map(file => {
+      if (file.indexOf('dev') >= 0) {
+        return Promise.resolve()
+      }
+
+      const inputFile = path.join(appDir, file)
+      const targetFile = path.join(contentDir, file)
+      return copyFile(inputFile, targetFile)
+    }))
+  })
 }
 
 function copyAppRunner(contentDir) {
