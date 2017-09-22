@@ -3,7 +3,7 @@ const log = require('electron-log')
 const path = require('path')
 
 const runner = require('./runner')
-const package = require('./package.json')
+const package = require('../package.json')
 require('./config').setConfig(package)
 
 log.info('got here')

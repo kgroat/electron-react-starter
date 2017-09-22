@@ -4,7 +4,7 @@ const path = require('path')
 
 const appName = require('../../package.json').appName
 
-const getDependencies = require('./getDependencies')
+// const getDependencies = require('./getDependencies')
 const createApp = require('./createApp')
 
 const platforms = [
@@ -52,5 +52,4 @@ function logError(errorMap) {
 }
 
 
-getDependencies()
-  .then(() => handlePlatforms(platformHelpers))
+handlePlatforms(platformHelpers)
