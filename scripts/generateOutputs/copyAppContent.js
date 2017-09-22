@@ -2,46 +2,25 @@
 const fs = require('fs')
 const path = require('path')
 const ncp = require('ncp')
+const package = require('../../package.json')
 
 const debug = require('./debug')
 
 module.exports = function copyAppContent (platform, contentDir) {
   debug(platform, 'Copying app content...')
   return Promise.all([
-    copyAppDir(contentDir),
-    copyAppRunner(contentDir),
+    copyApp(contentDir),
     copyBundle(contentDir),
     copyPackage(contentDir),
-    copyProdDeps(contentDir)
   ])
   .then(() => {
     debug(platform, 'Done!')
   })
 }
 
-function copyAppDir(contentDir) {
-  const appDir = path.join(__dirname, '../../app')
-  return new Promise((resolve, reject) => {
-    fs.readdir(appDir, (err, files) => {
-      if (err) { return reject(err) }
-      else { resolve(files) }
-    })
-  }).then(files => {
-    return Promise.all(files.map(file => {
-      if (file.indexOf('dev') >= 0) {
-        return Promise.resolve()
-      }
-
-      const inputFile = path.join(appDir, file)
-      const targetFile = path.join(contentDir, file)
-      return copyFile(inputFile, targetFile)
-    }))
-  })
-}
-
-function copyAppRunner(contentDir) {
-  const inputFile = path.join(__dirname, '../../app/runner.js')
-  const targetFile = path.join(contentDir, 'runner.js')
+function copyApp(contentDir) {
+  const inputFile = path.join(__dirname, '../../intermediates/app/index.js')
+  const targetFile = path.join(contentDir, 'index.js')
   return copyFile(inputFile, targetFile)
 }
 
@@ -52,15 +31,18 @@ function copyBundle(contentDir) {
 }
 
 function copyPackage(contentDir) {
-  const inputFile = path.join(__dirname, '../../package.json')
   const targetFile = path.join(contentDir, 'package.json')
-  return copyFile(inputFile, targetFile)
-}
+  return new Promise((resolve, reject) => {
+    const modified = Object.assign({}, package)
+    delete modified.scripts
+    delete modified.devDependencies
+    const output = JSON.stringify(modified)
 
-function copyProdDeps(contentDir) {
-  const inputDir = path.join(__dirname, '../../intermediates/node_modules')
-  const targetDir = path.join(contentDir, 'node_modules')
-  return copyFile(inputDir, targetDir)
+    fs.writeFile(targetFile, output, err => {
+      if (err) { reject(err) }
+      else { resolve() }
+    })
+  })
 }
 
 function copyFile(inputLocation, outputLocation) {
