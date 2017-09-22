@@ -19,7 +19,7 @@ const distConfig = {
   devServer: {
     contentBase: path.join(__dirname, "static"),
     compress: true,
-    port: process.env.PORT || 3001
+    port: process.env.PORT || 3000
   },
   output: {
     filename: '[name].js',
