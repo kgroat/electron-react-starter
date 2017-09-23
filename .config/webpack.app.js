@@ -9,7 +9,7 @@ const mainConfig = require('./webpack.main')
 const appConfig = {
   ...mainConfig,
   entry: {
-    'index': path.join(appDir, 'index.js')
+    'index': path.join(appDir, 'index.ts')
   },
   output: {
     filename: '[name].js',

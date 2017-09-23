@@ -1,8 +1,8 @@
 
-const {app, Menu} = require('electron')
-const config = require('./config')
+import { Menu } from 'electron'
+import config from './config'
 
-const template = [
+const template: Electron.MenuItemConstructorOptions[] = [
   {
     label: 'Edit',
     submenu: [
@@ -74,4 +74,4 @@ if (process.platform === 'darwin') {
 }
 
 const menu = Menu.buildFromTemplate(template)
-module.exports = menu
+export default menu
