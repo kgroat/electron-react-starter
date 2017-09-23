@@ -1,27 +1,22 @@
 
-const Observable = require('rxjs/observable').Observable
-const log = require('electron-log')
+import { Observable } from 'rxjs/Observable'
+import * as log from 'electron-log'
+import { app, BrowserWindow, Menu } from 'electron'
+import * as path from 'path'
+import * as url from 'url'
 
-const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
-
-const path = require('path')
-const url = require('url')
-
-const config = require('./config')
+import config from './config'
+import menu from './menu'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow: Electron.BrowserWindow
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-module.exports = function(root) {
-  return new Observable(subscriber => {
+export default (root) => {
+  return new Observable<Electron.BrowserWindow>(subscriber => {
     log.info('starting app with root', root)
     function createWindow() {
       log.info('creating window...')
@@ -33,13 +28,16 @@ module.exports = function(root) {
         title: config.appName
       })
       const windowUrl = path.join(root, 'index.html')
-      mainWindow.on('closed', function () {
+      mainWindow.on('closed', () => {
         mainWindow = null
       })
-      mainWindow.on('error', log.error)
       mainWindow.webContents.on('did-finish-load', () => {
         mainWindow.webContents.setLayoutZoomLevelLimits(-2, 2)
       })
+      mainWindow.webContents.on('crashed', log.error)
+      mainWindow.webContents.on('did-fail-load', log.error)
+      mainWindow.webContents.on('plugin-crashed', log.warn)
+
       log.info('url', windowUrl)
       mainWindow.loadURL(windowUrl)
       subscriber.next(mainWindow)
@@ -47,20 +45,19 @@ module.exports = function(root) {
     
     app.on('ready', () => {
       createWindow()
-      electron.Menu.setApplicationMenu(require('./menu'))
+      Menu.setApplicationMenu(menu)
     })
     
-    app.on('window-all-closed', function () {
+    app.on('window-all-closed', () => {
       if (process.platform !== 'darwin') {
         app.quit()
       }
     })
     
-    app.on('activate', function () {
+    app.on('activate', () => {
       if (mainWindow === null) {
         createWindow()
       }
     })
-    app.on('error', log.error)
   })
 }
