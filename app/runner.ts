@@ -6,7 +6,6 @@ import * as path from 'path'
 import * as url from 'url'
 
 import config from './config'
-import store from './redux'
 import menu from './menu'
 
 // Keep a global reference of the window object, if you don't, the window will
