@@ -42,11 +42,24 @@ jobs:
             - "intermediates"
             - "node_modules"
             - "/var/cache/apt/"
-      - run: zip --symlinks output/win32.zip output/win32
-      - run: zip --symlinks output/win64.zip output/win64
-      - run: zip --symlinks output/darwin.zip output/darwin
+      - run:
+          command: zip -r --symlinks win32.zip win32
+          working_directory: ./output
+      - run:
+          command: zip -r --symlinks win64.zip win64
+          working_directory: ./output
+      - run:
+          command: zip -r --symlinks darwin.zip darwin
+          working_directory: ./output
       - store_artifacts:
-          path: output
+          path: output/win32.zip
+          destination: win32.zip
+      - store_artifacts:
+          path: output/win64.zip
+          destination: win64.zip
+      - store_artifacts:
+          path: output/darwin.zip
+          destination: darwin.zip
 workflows:
   version: 2
   test_and_build:
