@@ -5,31 +5,42 @@ import {
   addTodoType, AddTodoAction,
   deleteTodoType, DeleteTodoAction,
   renameTodoType,
-  toggleTodoType
+  toggleTodoType,
 } from 'actions'
 
 import { ActorMap, buildReducer, buildPassThrough } from '../actorMap'
-import { Todo } from '../state'
+import { Todos } from '../state'
 
 import todoReducer from './todoReducer'
 
-export const INITIAL_STATE: Todo[] = []
+export const INITIAL_STATE: Todos = {}
 
 const passThrough = buildPassThrough(todoReducer)
 
-const actors: ActorMap<Todo[]> = {
-  [addTodoType]: (prev, { name, checked = false }: AddTodoAction) => [
-    ...prev,
-    {
-      id: uuid(),
-      name,
-      checked
+const actors: ActorMap<Todos> = {
+  [addTodoType]: (prev, { name, checked = false }: AddTodoAction) => {
+    const id = uuid()
+
+    return {
+      ...prev,
+      [id]: {
+        id,
+        name,
+        checked,
+      },
     }
-  ],
-  [deleteTodoType]: (prev, { id }: DeleteTodoAction) =>
-    prev.filter(todo => todo.id !== id),
+  },
+  [deleteTodoType]: (prev, { id }: DeleteTodoAction) => {
+    const output = {
+      ...prev,
+    }
+
+    delete output[id]
+
+    return output
+  },
   [renameTodoType]: passThrough,
-  [toggleTodoType]: passThrough
+  [toggleTodoType]: passThrough,
 }
 
 export default buildReducer(INITIAL_STATE, actors)

@@ -12,7 +12,7 @@ const checkAction = action('checked')
 
 class Checkable extends React.Component<{}, { checked: boolean }> {
   state = {
-    checked: false
+    checked: false,
   }
 
   toggleChecked = (checked = !this.state.checked) => {

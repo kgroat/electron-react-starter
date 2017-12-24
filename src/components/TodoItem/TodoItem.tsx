@@ -10,7 +10,9 @@ export interface Props {
   onDelete?: () => void
 }
 
-export default ({ name, checked, onChange, onDelete }: Props) => {
+const noop = () => null
+
+export default ({ name, checked, onChange = noop, onDelete }: Props) => {
   const checkboxIcon = checked ? 'checkbox-marked-outline' : 'checkbox-blank-outline'
 
   return (

@@ -10,7 +10,7 @@ import menu from './menu'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow: Electron.BrowserWindow
+let mainWindow: Electron.BrowserWindow | null
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
@@ -32,7 +32,7 @@ export default (root) => {
         mainWindow = null
       })
       mainWindow.webContents.on('did-finish-load', () => {
-        mainWindow.webContents.setLayoutZoomLevelLimits(-2, 2)
+        mainWindow && mainWindow.webContents.setLayoutZoomLevelLimits(-2, 2)
       })
       mainWindow.webContents.on('crashed', log.error)
       mainWindow.webContents.on('did-fail-load', log.error)

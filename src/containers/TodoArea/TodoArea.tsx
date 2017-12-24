@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { connect, Dispatch } from 'react-redux'
 
-import { State, Todo } from 'state'
+import { State, Todos } from 'state'
 import { addTodo, toggleTodo, deleteTodo } from 'actions'
 
 import TodoInput from 'components/TodoInput'
@@ -11,7 +11,7 @@ import TodoList from 'components/TodoList'
 import { todoArea, helperBar, title, hideDone as hideDoneClass, icon } from './TodoArea.scss'
 
 interface StateProps {
-  todos: Todo[]
+  todos: Todos
 }
 
 interface DispatchProps {
@@ -28,7 +28,7 @@ interface LocalState {
 
 export class TodoAreaBase extends React.Component<Props, LocalState> {
   state = {
-    hideDone: true
+    hideDone: true,
   }
 
   toggleHideDone = (hideDone = !this.state.hideDone) =>
@@ -38,8 +38,8 @@ export class TodoAreaBase extends React.Component<Props, LocalState> {
     const { hideDone } = this.state
 
     const todos = hideDone
-      ? this.props.todos.filter(item => !item.checked)
-      : this.props.todos
+      ? Object.values(this.props.todos).filter(item => !item.checked)
+      : Object.values(this.props.todos)
 
     const checkboxIcon = hideDone ? 'checkbox-marked-outline' : 'checkbox-blank-outline'
 
@@ -63,7 +63,7 @@ export class TodoAreaBase extends React.Component<Props, LocalState> {
 
 function mapStateToProps ({ todos }: State): StateProps {
   return {
-    todos
+    todos,
   }
 }
 
@@ -71,7 +71,7 @@ function mapDispatchToProps (dispatch: Dispatch<State>): DispatchProps {
   return {
     addTodo: (name, checked) => dispatch(addTodo({ name, checked })),
     toggleTodo: (id, checked) => dispatch(toggleTodo({ id, checked })),
-    deleteTodo: (id) => dispatch(deleteTodo({ id }))
+    deleteTodo: (id) => dispatch(deleteTodo({ id })),
   }
 }
 

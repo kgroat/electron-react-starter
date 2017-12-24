@@ -12,5 +12,5 @@ export type ToggleTodoAction = Options & Action
 
 export default (options: Options): ToggleTodoAction => ({
   ...options,
-  type
+  type,
 })

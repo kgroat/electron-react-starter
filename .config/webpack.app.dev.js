@@ -1,3 +1,4 @@
+
 const path = require('path')
 
 const appDir = path.join(__dirname, '../app')

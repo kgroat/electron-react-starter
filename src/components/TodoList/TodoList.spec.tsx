@@ -11,7 +11,7 @@ function createTodo (id: string, checked: boolean): Todo {
   return {
     id,
     name: 'Get milk',
-    checked
+    checked,
   }
 }
 
@@ -26,7 +26,7 @@ describe('<TodoList />', () => {
       it(`should render correctly with ${i} unchecked todos`, () => {
         const todos = createTodos(i, false)
         const tree = create(
-          <TodoList items={todos} toggleTodo={jest.fn()} deleteTodo={jest.fn()} />
+          <TodoList items={todos} toggleTodo={jest.fn()} deleteTodo={jest.fn()} />,
         )
         expect(tree).toMatchSnapshot()
       })
@@ -34,7 +34,7 @@ describe('<TodoList />', () => {
       it(`should render correctly with ${i} checked todos`, () => {
         const todos = createTodos(i, true)
         const tree = create(
-          <TodoList items={todos} toggleTodo={jest.fn()} deleteTodo={jest.fn()} />
+          <TodoList items={todos} toggleTodo={jest.fn()} deleteTodo={jest.fn()} />,
         )
         expect(tree).toMatchSnapshot()
       })
@@ -47,9 +47,16 @@ describe('<TodoList />', () => {
         const todos = [createTodo(id, false)]
         const deleteTodo = jest.fn()
         const element = shallow(
-          <TodoList items={todos} deleteTodo={deleteTodo} toggleTodo={jest.fn()} />
+          <TodoList items={todos} deleteTodo={deleteTodo} toggleTodo={jest.fn()} />,
         )
-        element.find(TodoItem).props().onDelete()
+
+        const itemProps = element.find(TodoItem).props()
+        if (itemProps.onDelete) {
+          itemProps.onDelete()
+        } else {
+          fail('onDelete should not be undefined')
+        }
+
         expect(deleteTodo).toHaveBeenCalledWith(id)
         expect(deleteTodo).toHaveBeenCalledTimes(1)
       })
@@ -62,9 +69,16 @@ describe('<TodoList />', () => {
         const todos = [createTodo(id, false)]
         const toggleTodo = jest.fn()
         const element = shallow(
-          <TodoList items={todos} toggleTodo={toggleTodo} deleteTodo={jest.fn()} />
+          <TodoList items={todos} toggleTodo={toggleTodo} deleteTodo={jest.fn()} />,
         )
-        element.find(TodoItem).props().onChange(true)
+
+        const itemProps = element.find(TodoItem).props()
+        if (itemProps.onChange) {
+          itemProps.onChange(true)
+        } else {
+          fail('onChange should not be undefineds')
+        }
+
         expect(toggleTodo).toHaveBeenCalledWith(id, true)
         expect(toggleTodo).toHaveBeenCalledTimes(1)
       })
@@ -72,9 +86,16 @@ describe('<TodoList />', () => {
         const todos = [createTodo(id, true)]
         const toggleTodo = jest.fn()
         const element = shallow(
-          <TodoList items={todos} toggleTodo={toggleTodo} deleteTodo={jest.fn()} />
+          <TodoList items={todos} toggleTodo={toggleTodo} deleteTodo={jest.fn()} />,
         )
-        element.find(TodoItem).props().onChange(false)
+
+        const itemProps = element.find(TodoItem).props()
+        if (itemProps.onChange) {
+          itemProps.onChange(false)
+        } else {
+          fail('onChange should not be undefined')
+        }
+
         expect(toggleTodo).toHaveBeenCalledWith(id, false)
         expect(toggleTodo).toHaveBeenCalledTimes(1)
       })

@@ -4,3 +4,7 @@ export interface Todo {
   name: string
   checked: boolean
 }
+
+export interface Todos {
+  [id: string]: Todo
+}

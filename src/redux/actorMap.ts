@@ -6,20 +6,18 @@ export interface ActorMap<S> {
 }
 
 export function buildReducer<S> (initialState: S, map: ActorMap<S>): Reducer<S> {
-  return (prev: S = initialState, action: Action): S => {
+  return (prev = initialState, action): S => {
     let actor = map[action.type]
-    return typeof actor === 'function' ? actor(prev, action) : prev
+    return actor ? actor(prev, action) : prev
   }
 }
 
-export function buildPassThrough<S extends { id: string }> (childReducer: Reducer<S>): Reducer<S[]> {
+export function buildPassThrough<S extends { id: string }> (childReducer: Reducer<S>): Reducer<{ [id: string]: S }> {
   return (prev, action: Action & { id: string }) => {
-    return prev.map(todo => {
-      if (todo.id === action.id) {
-        return childReducer(todo, action)
-      } else {
-        return todo
-      }
-    })
+    const { id } = action
+    return {
+      ...prev,
+      [id]: childReducer(prev[id], action),
+    }
   }
 }

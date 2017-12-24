@@ -9,7 +9,7 @@ import todoReducer, { INITIAL_STATE } from '../todoReducer'
 describe('todoReducer', () => {
   describe('initialize', () => {
     it('should return initial state to an uninitialized call', () => {
-      const actual = todoReducer(undefined, { type: 'initialize' })
+      const actual = todoReducer(undefined as any, { type: 'initialize' })
       const expected = INITIAL_STATE
 
       expect(actual).toBe(expected)
@@ -20,7 +20,7 @@ describe('todoReducer', () => {
     [
       'newname',
       'another name',
-      'fake todo'
+      'fake todo',
     ].forEach(name => {
       it(`should change name to '${name}'`, () => {
         const id = 'fakeid'
@@ -28,10 +28,10 @@ describe('todoReducer', () => {
         const actual = todoReducer(deepFreeze({
           id,
           name: 'fakename',
-          checked: false
+          checked: false,
         }), renameTodo({
           id,
-          name
+          name,
         }))
 
         expect(actual.name).toBe(name)
@@ -47,10 +47,10 @@ describe('todoReducer', () => {
       const actual = todoReducer(deepFreeze({
         id,
         name: 'fakename',
-        checked: !expected
+        checked: !expected,
       }), toggleTodo({
         id,
-        checked: expected
+        checked: expected,
       }))
 
       expect(actual.checked).toBe(expected)
@@ -63,10 +63,10 @@ describe('todoReducer', () => {
       const actual = todoReducer(deepFreeze({
         id,
         name: 'fakename',
-        checked: !expected
+        checked: !expected,
       }), toggleTodo({
         id,
-        checked: expected
+        checked: expected,
       }))
 
       expect(actual.checked).toBe(expected)

@@ -10,19 +10,19 @@ describe('<TodoItem />', () => {
   describe('snapshots', () => {
     it('should render unchecked without a delete icon', () => {
       const tree = create(
-        <TodoItem name='Get milk' />
+        <TodoItem name='Get milk' />,
       )
       expect(tree).toMatchSnapshot()
     })
     it('should render checked without a delete icon', () => {
       const tree = create(
-        <TodoItem name='Get milk' checked />
+        <TodoItem name='Get milk' checked />,
       )
       expect(tree).toMatchSnapshot()
     })
     it('should render with a delete icon', () => {
       const tree = create(
-        <TodoItem name='Get milk' onDelete={jest.fn()} />
+        <TodoItem name='Get milk' onDelete={jest.fn()} />,
       )
       expect(tree).toMatchSnapshot()
     })
@@ -32,7 +32,7 @@ describe('<TodoItem />', () => {
     it('should call onChange with true once', () => {
       const onChange = jest.fn()
       const element = shallow(
-        <TodoItem name='Get milk' onChange={onChange} />
+        <TodoItem name='Get milk' onChange={onChange} />,
       )
       element.findWhere(el => el.hasClass(checkboxIcon)).simulate('click')
       expect(onChange).toHaveBeenCalledWith(true)
@@ -41,7 +41,7 @@ describe('<TodoItem />', () => {
     it('should call onChange with false once', () => {
       const onChange = jest.fn()
       const element = shallow(
-        <TodoItem name='Get milk' checked onChange={onChange} />
+        <TodoItem name='Get milk' checked onChange={onChange} />,
       )
       element.findWhere(el => el.hasClass(checkboxIcon)).simulate('click')
       expect(onChange).toHaveBeenCalledWith(false)
@@ -53,7 +53,7 @@ describe('<TodoItem />', () => {
     it('should call onDelete once', () => {
       const onDelete = jest.fn()
       const element = shallow(
-        <TodoItem name='Get milk' onDelete={onDelete} />
+        <TodoItem name='Get milk' onDelete={onDelete} />,
       )
       element.findWhere(el => el.hasClass(deleteIcon)).simulate('click')
       expect(onDelete).toHaveBeenCalledTimes(1)

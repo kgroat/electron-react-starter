@@ -10,7 +10,7 @@ describe('<TodoInput />', () => {
   describe('snapshots', () => {
     it('should render', () => {
       const tree = create(
-        <TodoInput onAdd={jest.fn()} />
+        <TodoInput onAdd={jest.fn()} />,
       )
       expect(tree).toMatchSnapshot()
     })
@@ -20,7 +20,7 @@ describe('<TodoInput />', () => {
     it('should not call onAdd if no name has been chosen', () => {
       const onAdd = jest.fn()
       const element = shallow(
-        <TodoInput onAdd={onAdd} />
+        <TodoInput onAdd={onAdd} />,
       )
       element.findWhere(el => el.is('form')).simulate('submit', { preventDefault: jest.fn() })
       expect(onAdd).not.toHaveBeenCalled()
@@ -29,12 +29,12 @@ describe('<TodoInput />', () => {
       const name = 'Get milk'
       const onAdd = jest.fn()
       const element = shallow(
-        <TodoInput onAdd={onAdd} />
+        <TodoInput onAdd={onAdd} />,
       )
       element.findWhere(el => el.hasClass(title)).simulate('change', {
         currentTarget: {
-          value: name
-        }
+          value: name,
+        },
       })
       element.findWhere(el => el.is('form')).simulate('submit', { preventDefault: jest.fn() })
       expect(onAdd).toHaveBeenCalledWith(name, false)
@@ -44,12 +44,12 @@ describe('<TodoInput />', () => {
       const name = 'Get milk'
       const onAdd = jest.fn()
       const element = shallow(
-        <TodoInput onAdd={onAdd} />
+        <TodoInput onAdd={onAdd} />,
       )
       element.findWhere(el => el.hasClass(title)).simulate('change', {
         currentTarget: {
-          value: name
-        }
+          value: name,
+        },
       })
       element.findWhere(el => el.hasClass('checkbox')).simulate('click')
       element.findWhere(el => el.is('form')).simulate('submit', { preventDefault: jest.fn() })

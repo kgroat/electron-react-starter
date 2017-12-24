@@ -5,14 +5,14 @@ import { Provider } from 'react-redux'
 import { Store, Dispatch } from 'redux'
 import { shallow } from 'enzyme'
 
-import { State, Todo } from 'state'
+import { State, Todo, Todos } from 'state'
 import TodoInput from 'components/TodoInput'
 import TodoList from 'components/TodoList'
 
 import {
   addTodoType, AddTodoAction,
   toggleTodoType, ToggleTodoAction,
-  deleteTodoType, DeleteTodoAction
+  deleteTodoType, DeleteTodoAction,
 } from 'actions'
 
 import { TodoAreaBase, Props } from './TodoArea'
@@ -31,12 +31,12 @@ const store = {
     return dispatch as Dispatch<State>
   },
   subscribe: jest.fn(),
-  replaceReducer: jest.fn()
+  replaceReducer: jest.fn(),
 } as Store<State>
 
 function resetState () {
   state = {
-    todos: []
+    todos: {},
   } as State
 }
 
@@ -44,20 +44,27 @@ function createTodo (id: string, checked: boolean): Todo {
   return {
     id,
     name: 'Get milk',
-    checked
+    checked,
   }
 }
 
-function createTodos (count: number, checked): Todo[] {
-  return Array.from(Array(count))
-    .map((v, idx) => createTodo(`${idx}`, checked))
+function createTodos (count: number, checked): Todos {
+  const todos: Todos = {}
+  Array.from(Array(count))
+    .map((v, idx) => {
+      const id = `${idx}`
+      const todo = createTodo(`${idx}`, checked)
+      todos[id] = todo
+    })
+
+  return todos
 }
 
 const defaultProps: Props = {
-  todos: [],
+  todos: {},
   addTodo: jest.fn(),
   toggleTodo: jest.fn(),
-  deleteTodo: jest.fn()
+  deleteTodo: jest.fn(),
 }
 
 describe('<TodoArea />', () => {
@@ -73,7 +80,7 @@ describe('<TodoArea />', () => {
         const tree = create(
           <Provider store={store}>
             <TodoArea />
-          </Provider>
+          </Provider>,
         )
         expect(tree).toMatchSnapshot()
       })
@@ -83,7 +90,7 @@ describe('<TodoArea />', () => {
         const tree = create(
           <Provider store={store}>
             <TodoArea />
-          </Provider>
+          </Provider>,
         )
         expect(tree).toMatchSnapshot()
       })
@@ -93,7 +100,7 @@ describe('<TodoArea />', () => {
       const tree = create(
         <Provider store={store}>
           <TodoArea />
-        </Provider>
+        </Provider>,
       )
       expect(tree).toMatchSnapshot()
     })
@@ -117,7 +124,7 @@ describe('<TodoArea />', () => {
       const expected: AddTodoAction = {
         type: addTodoType,
         name,
-        checked: false
+        checked: false,
       }
 
       const element = shallow(<TodoArea />, { context: { store } })
@@ -145,11 +152,11 @@ describe('<TodoArea />', () => {
         })
 
         it(`should dispatch a ${toggleTodoType} action with id: ${id} and checked: ${checked} once`, () => {
-          state.todos = [createTodo(id, true)]
+          state.todos = { [id]: createTodo(id, true) }
           const expected: ToggleTodoAction = {
             type: toggleTodoType,
             id,
-            checked
+            checked,
           }
 
           const element = shallow(<TodoArea />, { context: { store } })
@@ -178,10 +185,10 @@ describe('<TodoArea />', () => {
       })
 
       it(`should dispatch a ${deleteTodoType} action with id ${id} once`, () => {
-        state.todos = [createTodo(id, false)]
+        state.todos = { [id]: createTodo(id, false) }
         const expected: DeleteTodoAction = {
           type: deleteTodoType,
-          id
+          id,
         }
 
         const element = shallow(<TodoArea />, { context: { store } })

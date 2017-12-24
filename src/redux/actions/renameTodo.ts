@@ -12,5 +12,5 @@ export type RenameTodoAction = Options & Action
 
 export default (options: Options): RenameTodoAction => ({
   ...options,
-  type
+  type,
 })

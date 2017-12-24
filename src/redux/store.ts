@@ -6,7 +6,7 @@ import rootReducer from './rootReducer'
 
 const store = createStore(
   rootReducer,
-  autoRehydrate()
+  autoRehydrate(),
 )
 
 persistStore(store)

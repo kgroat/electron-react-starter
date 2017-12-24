@@ -1,6 +1,6 @@
 
-import { Todo } from './todo'
+import { Todos } from './todo'
 
 export interface State {
-  todos: Todo[]
+  todos: Todos
 }

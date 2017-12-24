@@ -11,5 +11,5 @@ export type DeleteTodoAction = Options & Action
 
 export default (options: Options): DeleteTodoAction => ({
   ...options,
-  type
+  type,
 })

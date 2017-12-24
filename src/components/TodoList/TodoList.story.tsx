@@ -16,23 +16,23 @@ const items: Todo[] = [
   {
     id: '0',
     name: 'Get milk',
-    checked: false
+    checked: false,
   },
   {
     id: '1',
     name: 'Get cookies',
-    checked: false
+    checked: false,
   },
   {
     id: '2',
     name: 'Do laundry',
-    checked: true
-  }
+    checked: true,
+  },
 ]
 
 class Interactible extends React.Component<{}, { items: Todo[] }> {
   state = {
-    items: [...items]
+    items: [...items],
   }
 
   toggleChecked = (id: string, checked: boolean) => {
@@ -42,9 +42,9 @@ class Interactible extends React.Component<{}, { items: Todo[] }> {
           ? item
           : {
             ...item,
-            checked
+            checked,
           }
-      })
+      }),
     }))
     checkAction(id, checked)
   }
@@ -52,7 +52,7 @@ class Interactible extends React.Component<{}, { items: Todo[] }> {
   deleteItem = (id: string) => {
     deleteAction(id)
     this.setState(({ items }) => ({
-      items: items.filter(item => item.id !== id)
+      items: items.filter(item => item.id !== id),
     }))
   }
 

@@ -12,5 +12,5 @@ export type AddTodoAction = Options & Action
 
 export default (options: Options): AddTodoAction => ({
   ...options,
-  type
+  type,
 })

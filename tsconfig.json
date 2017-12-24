@@ -1,24 +1,6 @@
 {
   "extends": "./.config/tsconfig.json",
   "compilerOptions": {
-    "lib": [
-      "es2015",
-      "es2016",
-      "es2017",
-      "dom"
-    ],
-    "jsx": "react",
-    "allowJs": true,
-    "sourceMap": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "target": "es2015",
-    "baseUrl": "./src",
-    "paths": {
-      "components": ["./components"],
-      "containers": ["./containers"],
-      "actions": ["./redux/actions"],
-      "state": ["./redux/state"]
-    }
+    "baseUrl": "./src"
   }
 }

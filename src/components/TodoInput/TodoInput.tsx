@@ -15,7 +15,7 @@ export interface Props {
 export default class TodoInput extends React.Component<Props, State> {
   state = {
     name: '',
-    checked: false
+    checked: false,
   }
 
   setName = (name: string) =>
