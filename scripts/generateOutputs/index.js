@@ -2,23 +2,17 @@
 
 const path = require('path')
 
-const appName = require('../../package.json').appName
+const { appName, platforms } = require('../../package.json')
 
-// const getDependencies = require('./getDependencies')
 const createApp = require('./createApp')
+const platformNames = Object.keys(platforms)
 
-const platforms = [
-  'darwin',
-  'win32',
-  'win64',
-]
-
-const platformHelpers = platforms.map(platform => {
+const platformHelpers = platformNames.map(platform => {
   const helper = require(path.join(__dirname, 'platforms', platform))
 
   return {
     platform: platform,
-    archiveUrl: helper.archiveUrl,
+    archiveUrl: helper.archiveUrl(platforms[platform]),
     prepareApp: helper.prepareApp,
   }
 })

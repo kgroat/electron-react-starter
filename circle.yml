@@ -1,0 +1,55 @@
+
+version: 2
+jobs:
+  test:
+    docker:
+      - image: "node:8.9.3"
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-electron-react-app-test-{{ checksum "package-lock.json" }}
+      - run: yarn global add npm@5
+      - run: npm install
+      - save_cache:
+          key: v1-electron-react-app-test-{{ checksum "package-lock.json" }}
+          paths:
+            - "~/.npm"
+            - "node_modules"
+      - run: npm test
+
+  build:
+    docker:
+      - image: "node:8.9.3"
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-electron-react-app-build-{{ checksum "package-lock.json" }}
+      - run: yarn global add npm@5
+      - run: npm install
+      - run: npm run build
+      - run: apt update
+      - run: apt install -y zip
+      - save_cache:
+          key: v1-electron-react-app-build-{{ checksum "package-lock.json" }}
+          paths:
+            - "~/.npm"
+            - "intermediates"
+            - "node_modules"
+            - "/var/cache/apt/"
+      - run: zip --symlinks output/win32.zip output/win32
+      - run: zip --symlinks output/win64.zip output/win64
+      - run: zip --symlinks output/darwin.zip output/darwin
+      - store_artifacts:
+          path: output
+workflows:
+  version: 2
+  test_and_build:
+    jobs:
+      - test
+      - build

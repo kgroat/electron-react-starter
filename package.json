@@ -5,6 +5,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "platforms": {
+    "win32": "1.6.13",
+    "win64": "1.6.13",
+    "darwin": "1.6.13"
+  },
   "scripts": {
     "check": "run-s test lint",
     "test": "run-s -c test:lint test:unit",
@@ -17,7 +22,6 @@
     "start:app:start": "sleepms 5000 && electron intermediates/app/index.js",
     "build": "NODE_ENV=production run-s build:archives-dir build:bundle build:pack build:outputs",
     "build:archives-dir": "mkdir -p intermediates/archives",
-    "intermediates:archives": "mkdir -p intermediates/archives",
     "build:bundle": "webpack --config .config/webpack.config.js",
     "build:pack": "asar pack intermediates/dist intermediates/bundle.asar",
     "build:outputs": "node ./scripts/generateOutputs/index.js",

@@ -7,7 +7,7 @@ const package = require('../../../package.json')
 
 const createDir = require('../createDir')
 
-const archiveUrl = 'https://github.com/electron/electron/releases/download/v1.6.13/electron-v1.6.13-darwin-x64.zip'
+const archiveUrl = (version) => `https://github.com/electron/electron/releases/download/v${version}/electron-v${version}-darwin-x64.zip`
 
 module.exports = {
   archiveUrl: archiveUrl,
@@ -58,7 +58,7 @@ function updateApp(appDir, appName) {
 }
 
 function updateInfoPlist(appDir, appName) {
-  const location = path.join(appDir, 'Contents/info.plist')
+  const location = path.join(appDir, 'Contents/Info.plist')
   return modifyPlist(location, {
     'CFBundleDisplayName': appName,
     'CFBundleExecutable': appName,
@@ -85,7 +85,7 @@ function updateHelper(appDir, appName) {
 }
 
 function updateHelperInfoPlist(appDir, appName) {
-  const location = path.join(appDir, 'Contents/info.plist')
+  const location = path.join(appDir, 'Contents/Info.plist')
   return modifyPlist(location, {
     'CFBundleName': `${appName} Helper`,
   })
@@ -108,7 +108,7 @@ function updateHelperEH(appDir, appName) {
 
 function updateHelperEHInfoPlist(appDir, appName) {
   const bundleName = `${appName} Helper EH`
-  const location = path.join(appDir, 'Contents/info.plist')
+  const location = path.join(appDir, 'Contents/Info.plist')
   return modifyPlist(location, {
     'CFBundleDisplayName': bundleName,
     'CFBundleExecutable': bundleName,
@@ -132,7 +132,7 @@ function updateHelperNp(appDir, appName) {
 }
 
 function updateHelperNPInfoPlist(bundleDir, bundleName) {
-  const location = path.join(bundleDir, 'Contents/info.plist')
+  const location = path.join(bundleDir, 'Contents/Info.plist')
   return modifyPlist(location, {
     'CFBundleDisplayName': bundleName,
     'CFBundleExecutable': bundleName,

@@ -4,7 +4,7 @@ const fs = require('fs')
 
 const createDir = require('../createDir')
 
-const archiveUrl = 'https://github.com/electron/electron/releases/download/v1.6.13/electron-v1.6.13-win32-ia32.zip'
+const archiveUrl = (version) => `https://github.com/electron/electron/releases/download/v${version}/electron-v${version}-win32-ia32.zip`
 
 module.exports = {
   archiveUrl: archiveUrl,
