@@ -20,10 +20,10 @@ const template: Electron.MenuItemConstructorOptions[] = [
         label: 'Speech',
         submenu: [
           {role: 'startspeaking'},
-          {role: 'stopspeaking'}
-        ]
-      }
-    ]
+          {role: 'stopspeaking'},
+        ],
+      },
+    ],
   },
   {
     label: 'View',
@@ -32,8 +32,8 @@ const template: Electron.MenuItemConstructorOptions[] = [
       {role: 'zoomin'},
       {role: 'zoomout'},
       {type: 'separator'},
-      {role: 'togglefullscreen'}
-    ]
+      {role: 'togglefullscreen'},
+    ],
   },
   {
     role: 'window',
@@ -42,18 +42,18 @@ const template: Electron.MenuItemConstructorOptions[] = [
       {role: 'minimize'},
       {role: 'zoom'},
       {type: 'separator'},
-      {role: 'front'}
-    ]
+      {role: 'front'},
+    ],
   },
   {
     role: 'help',
     submenu: [
       {
         label: 'Learn More',
-        click () { require('electron').shell.openExternal('https://electron.atom.io') }
-      }
-    ]
-  }
+        click () { require('electron').shell.openExternal('https://electron.atom.io') },
+      },
+    ],
+  },
 ]
 
 if (process.platform === 'darwin') {
@@ -68,8 +68,8 @@ if (process.platform === 'darwin') {
       {role: 'hideothers'},
       {role: 'unhide'},
       {type: 'separator'},
-      {role: 'quit'}
-    ]
+      {role: 'quit'},
+    ],
   })
 }
 

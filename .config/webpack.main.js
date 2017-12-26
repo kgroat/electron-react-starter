@@ -25,7 +25,6 @@ const mainConfig = {
       state: path.join(__dirname, '../src/redux/state'),
     }
   },
-  target: 'node',
   node: {
     __dirname: false,
     __filename: false
@@ -45,6 +44,7 @@ const mainConfig = {
       {
         test: /\.tsx?$/,
         loaders: [
+          'react-hot-loader/webpack',
           {
             loader: 'awesome-typescript-loader',
             options: {

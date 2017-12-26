@@ -13,21 +13,21 @@ interface Config {
 }
 
 const values = [
-  { 
-    key: 'appName', 
-    getter: (pkg) => pkg.appName
+  {
+    key: 'appName',
+    getter: (pkg) => pkg.appName,
   },
-  { 
-    key: 'version', 
+  {
+    key: 'version',
     getter: (pkg): AppVersion => {
       const version = pkg.version as string
       const [major, minor, patch] = version.split('.').map(val => parseInt(val, 10))
       return {
         major,
         minor,
-        patch
+        patch,
       }
-    } 
+    },
   },
 ]
 
@@ -36,7 +36,7 @@ const makeConfig = () => {
   values.forEach(({ key, getter }) => {
     tmpConfig = {
       ...tmpConfig,
-      get [key]() { return getter(pkg) }
+      get [key] () { return getter(pkg) },
     }
   })
   return tmpConfig as Config

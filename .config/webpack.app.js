@@ -11,6 +11,7 @@ const appConfig = {
   entry: {
     'index': path.join(appDir, 'index.ts')
   },
+  target: 'node',
   output: {
     filename: '[name].js',
     path: outputDir

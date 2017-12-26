@@ -1,4 +1,5 @@
 
+const webpack = require('webpack')
 const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -11,16 +12,21 @@ const srcDir = path.join(__dirname, '../src')
 
 const mainConfig = require('./webpack.main')
 
+const PORT = process.env.PORT || 3000
+
 const distConfig = {
   ...mainConfig,
   entry: {
-    'index': path.join(srcDir, 'index.tsx'),
-    //'about/index': path.join(srcDir, 'about.tsx')
+    'index': [
+      'react-hot-loader/patch',
+      path.join(srcDir, 'index.tsx'),
+      'webpack/hot/only-dev-server',
+    ],
   },
   devServer: {
-    contentBase: path.join(__dirname, "static"),
-    compress: true,
-    port: process.env.PORT || 3000
+    contentBase: path.join(__dirname, "../static"),
+    port: PORT,
+    hot: true,
   },
   output: {
     filename: '[name].js',
@@ -32,17 +38,8 @@ const distConfig = {
       chunks: ['index'],
       template: path.join(__dirname, '../src/index.ejs')
     }),
-    new HtmlWebpackPlugin({
-      title: 'About',
-      chunks: ['about/index'],
-      template: path.join(__dirname, '../src/index.ejs'),
-      filename: 'about/index.html'
-    }),
-    //new CopyWebpackPlugin([
-    //  {
-    //    from: path.join(__dirname, '../static')
-    //  }
-    //])
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
 
