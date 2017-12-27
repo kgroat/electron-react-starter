@@ -19,6 +19,9 @@ jobs:
             - "~/.npm"
             - "node_modules"
       - run: npm test
+      - run: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+      - store_test_results:
+          path: coverage
 
   build:
     docker:
