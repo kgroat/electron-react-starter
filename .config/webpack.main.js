@@ -44,7 +44,6 @@ const mainConfig = {
       {
         test: /\.tsx?$/,
         loaders: [
-          'react-hot-loader/webpack',
           {
             loader: 'awesome-typescript-loader',
             options: {
