@@ -32,7 +32,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-electron-react-app-build-{{ checksum "package-lock.json" }}
+          key: v1-electron-react-app-build-{{ checksum "package.json" }}
       - run: yarn global add npm@5
       - run: npm install
       - run: dpkg --add-architecture i386
@@ -41,7 +41,7 @@ jobs:
       - run: WINEARCH=win32 winecfg
       - run: npm run build
       - save_cache:
-          key: v1-electron-react-app-build-{{ checksum "package-lock.json" }}
+          key: v1-electron-react-app-build-{{ checksum "package.json" }}
           paths:
             - "~/.npm"
             - "intermediates"
@@ -56,6 +56,12 @@ jobs:
       - run:
           command: zip -r --symlinks darwin.zip darwin
           working_directory: ./output
+      - run:
+          command: zip -r --symlinks linux32.zip linux32
+          working_directory: ./output
+      - run:
+          command: zip -r --symlinks linux64.zip linux64
+          working_directory: ./output
       - store_artifacts:
           path: output/win32.zip
           destination: win32.zip
@@ -65,6 +71,12 @@ jobs:
       - store_artifacts:
           path: output/darwin.zip
           destination: darwin.zip
+      - store_artifacts:
+          path: output/linux32.zip
+          destination: linux32.zip
+      - store_artifacts:
+          path: output/linux64.zip
+          destination: linux64.zip
 workflows:
   version: 2
   test_and_build:

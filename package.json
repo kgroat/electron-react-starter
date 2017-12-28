@@ -7,9 +7,11 @@
   "description": "",
   "main": "index.js",
   "platforms": {
-    "win32": "1.6.13",
-    "win64": "1.6.13",
-    "darwin": "1.6.13"
+    "darwin": "1.7.10",
+    "linux32": "1.7.10",
+    "linux64": "1.7.10",
+    "win32": "1.7.10",
+    "win64": "1.7.10"
   },
   "scripts": {
     "check": "run-s test lint",
