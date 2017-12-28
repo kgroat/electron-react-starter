@@ -5,6 +5,7 @@ const ncp = require('ncp')
 const package = require('../../package.json')
 
 const debug = require('./debug')
+const copyFile = require('./copyFile')
 
 module.exports = function copyAppContent (platform, contentDir) {
   debug(platform, 'Copying app content...')
@@ -39,15 +40,6 @@ function copyPackage(contentDir) {
     const output = JSON.stringify(modified)
 
     fs.writeFile(targetFile, output, err => {
-      if (err) { reject(err) }
-      else { resolve() }
-    })
-  })
-}
-
-function copyFile(inputLocation, outputLocation) {
-  return new Promise((resolve, reject) => {
-    ncp(inputLocation, outputLocation, err => {
       if (err) { reject(err) }
       else { resolve() }
     })

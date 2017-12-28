@@ -24,6 +24,10 @@ This will generate distributions for MacOS, Windows x86, and Windows x64.  Steps
 
 All of the application outputs will be generated into their own subdirectory of the `output` directory. Some application information is pulled from `package.json`, namely the app name is pulled from `appName`, and the version is pulled from `version`.
 
+##### Note:
+In order to build for windows in non-windows environments, wine 1.6 or later must be installed and on the path variable.
+On OSX, wine can be installed with [Homebrew](https://brew.sh/) using the command `brew install wine`
+
 ### Development
 
 #### Testing

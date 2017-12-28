@@ -35,9 +35,11 @@ jobs:
           key: v1-electron-react-app-build-{{ checksum "package-lock.json" }}
       - run: yarn global add npm@5
       - run: npm install
-      - run: npm run build
+      - run: dpkg --add-architecture i386
       - run: apt update
-      - run: apt install -y zip
+      - run: apt install -y zip wine wine32
+      - run: WINEARCH=win32 winecfg
+      - run: npm run build
       - save_cache:
           key: v1-electron-react-app-build-{{ checksum "package-lock.json" }}
           paths:

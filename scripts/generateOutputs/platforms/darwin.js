@@ -2,10 +2,12 @@
 const path = require('path')
 const fs = require('fs')
 const plist = require('plist')
+const ncp = require('ncp')
 
 const package = require('../../../package.json')
 
 const createDir = require('../createDir')
+const copyFile = require('../copyFile')
 
 const archiveUrl = (version) => `https://github.com/electron/electron/releases/download/v${version}/electron-v${version}-darwin-x64.zip`
 
@@ -20,6 +22,7 @@ function prepareApp (outputDir, appName) {
   const destDir = path.join(newAppDir, 'Contents/Resources/app')
   
   return Promise.all([
+    copyIcon(appDir, appName),
     updateApp(appDir, appName),
     updateHelper(appDir, appName),
     updateHelperEH(appDir, appName),
@@ -49,6 +52,13 @@ function rename(outputDir, item) {
   })
 }
 
+function copyIcon(appDir, appName) {
+  return copyFile(
+    path.join(__dirname, '../../../intermediates/icons/mac/icon.icns'),
+    path.join(appDir, 'Contents/Resources/icon.icns')
+  )
+}
+
 function updateApp(appDir, appName) {
   return updateInfoPlist(appDir, appName)
     .then(() => rename(path.join(appDir, 'Contents/MacOS'), {
@@ -66,6 +76,7 @@ function updateInfoPlist(appDir, appName) {
     'CFBundleIdentifier': package.identifier,
     'CFBundleShortVersionString': package.version,
     'CFBundleVersion': package.version,
+    'CFBundleIconFile': 'icon.icns',
   })
 }
 

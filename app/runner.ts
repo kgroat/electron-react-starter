@@ -25,6 +25,8 @@ export default (root) => {
         minWidth: 400,
         minHeight: 400,
         title: config.appName,
+        icon: './icons/64x64.png',
+        show: false,
       })
       const windowUrl = path.join(root, 'index.html')
       mainWindow.on('closed', () => {
@@ -32,6 +34,12 @@ export default (root) => {
       })
       mainWindow.webContents.on('did-finish-load', () => {
         mainWindow && mainWindow.webContents.setLayoutZoomLevelLimits(-2, 2)
+      })
+      mainWindow.on('ready-to-show', () => {
+        if (mainWindow) {
+          mainWindow.show()
+          subscriber.next(mainWindow)
+        }
       })
       mainWindow.webContents.on('crashed', log.error)
       mainWindow.webContents.on('did-fail-load', log.error)

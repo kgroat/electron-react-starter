@@ -99,7 +99,14 @@ const mainConfig = {
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg|ico)$/,
-        loader: 'file-loader'
+        loaders: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8 * 1024 * 1024
+            }
+          }
+        ]
       },
     ]
   }
