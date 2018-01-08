@@ -14,7 +14,6 @@
     "win64": "1.7.10"
   },
   "scripts": {
-    "check": "run-s test lint",
     "test": "run-s -c test:lint test:unit",
     "test:lint": "tslint --config .config/tslint.json --project .config/tsconfig.json",
     "test:unit": "jest --config=.config/jest.json",

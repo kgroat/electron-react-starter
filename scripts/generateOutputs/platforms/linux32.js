@@ -18,7 +18,7 @@ function prepareApp (outputDir, appName) {
   
   return Promise.all([
     createDir(destDir),
-    copyPngIcons(resourcesDir)
+    copyPngIcons(destDir)
   ])
   .then(() => destDir)
 }
@@ -48,9 +48,9 @@ function rename(outputDir, item) {
   })
 }
 
-function copyPngIcons(resourcesDir) {
+function copyPngIcons(destDir) {
   return copyFile(
     path.join(__dirname, '../../../intermediates/icons/png'),
-    path.join(resourcesDir, 'icons')
+    path.join(destDir, 'icons')
   )
 }

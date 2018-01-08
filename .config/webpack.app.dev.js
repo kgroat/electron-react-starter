@@ -1,4 +1,5 @@
 
+const webpack = require('webpack')
 const path = require('path')
 
 const appDir = path.join(__dirname, '../app')
@@ -16,6 +17,12 @@ const appConfig = {
     filename: '[name].js',
     path: outputDir
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
+      '__DEV__': JSON.stringify(true)
+    }),
+  ],
 }
 
 module.exports = appConfig

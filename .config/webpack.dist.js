@@ -14,6 +14,9 @@ const mainConfig = require('./webpack.main')
 
 const PORT = process.env.PORT || 3000
 
+const NODE_ENV = process.env.NODE_ENV || 'development'
+const __DEV__ = NODE_ENV !== 'production'
+
 const distConfig = {
   ...mainConfig,
   entry: {
@@ -39,8 +42,12 @@ const distConfig = {
       template: path.join(__dirname, '../src/index.ejs')
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ]
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+      '__DEV__': JSON.stringify(__DEV__)
+    }),
+  ],
 }
 
 module.exports = distConfig

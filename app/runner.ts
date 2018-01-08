@@ -17,8 +17,11 @@ let mainWindow: Electron.BrowserWindow | null
 export default (root) => {
   return new Observable<Electron.BrowserWindow>(subscriber => {
     log.info('starting app with root', root)
+
     function createWindow () {
       log.info('creating window...')
+
+      // Create the electron window
       mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
@@ -28,40 +31,56 @@ export default (root) => {
         icon: './icons/64x64.png',
         show: false,
       })
+
       const windowUrl = path.join(root, 'index.html')
+      log.info('url', windowUrl)
+
+      // Clear the ref to the main window whenever it is closed
       mainWindow.on('closed', () => {
         mainWindow = null
       })
+
+      // Fired whenever all files finished loading, but before the app has been rendered for the first time
       mainWindow.webContents.on('did-finish-load', () => {
         mainWindow && mainWindow.webContents.setLayoutZoomLevelLimits(-2, 2)
       })
+
+      // Fired whenever the app is finished rendering for the first time
       mainWindow.on('ready-to-show', () => {
         if (mainWindow) {
+          // Show the window only after first render
           mainWindow.show()
+
+          // Tell the caller that a window has been opened
           subscriber.next(mainWindow)
         }
       })
+
+      // Pass any errors or warnings into the logger
       mainWindow.webContents.on('crashed', log.error)
       mainWindow.webContents.on('did-fail-load', log.error)
       mainWindow.webContents.on('plugin-crashed', log.warn)
 
-      log.info('url', windowUrl)
+      // After all listeners have been registered, then load the application
       mainWindow.loadURL(windowUrl)
-      subscriber.next(mainWindow)
     }
 
+    // Fires when the app is ready to load
     app.on('ready', () => {
       createWindow()
       Menu.setApplicationMenu(menu)
     })
 
+    // Except on mac: kill the app whenever all windows are closed
     app.on('window-all-closed', () => {
       if (process.platform !== 'darwin') {
         app.quit()
       }
     })
 
+    // Only on mac: whenever the icon is clicked
     app.on('activate', () => {
+      // Only create a window if there isn't already onw
       if (mainWindow === null) {
         createWindow()
       }
