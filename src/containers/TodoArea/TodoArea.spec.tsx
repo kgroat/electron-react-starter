@@ -21,14 +21,14 @@ import TodoArea from './'
 
 let state: State
 
-let dispatch: Dispatch<State> & jest.Mock<any>
+let dispatch: Dispatch & jest.Mock<any>
 
 const store = {
   getState () {
     return state
   },
   get dispatch () {
-    return dispatch as Dispatch<State>
+    return dispatch as Dispatch
   },
   subscribe: jest.fn(),
   replaceReducer: jest.fn(),

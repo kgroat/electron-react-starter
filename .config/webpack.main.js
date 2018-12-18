@@ -33,17 +33,17 @@ const mainConfig = {
     ignore('electron')
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /^\.html$/,
-        loaders: [
+        use: [
           'extract-loader',
           'html-loader?attrs=srcipt:src'
         ]
       },
       {
         test: /\.tsx?$/,
-        loaders: [
+        use: [
           {
             loader: 'awesome-typescript-loader',
             options: {
@@ -57,12 +57,8 @@ const mainConfig = {
         loader: 'html-loader'
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
         test: /\.s?css$/,
-        loaders: [
+        use: [
           {
             loader: 'style-loader',
             options: {
@@ -89,17 +85,34 @@ const mainConfig = {
       },
       {
         test: /\.s?css$/,
-        loaders: [
-          'style-loader?singleton=true',
-          'css-loader?sourceMap&importLoaders=1',
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              singleton: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+              sourceMap: true,
+              importLoaders: 2
+            }
+          },
           'resolve-url-loader',
-          'sass-loader?sourceMap'
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ],
         exclude: /(components|containers)/,
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg|ico)$/,
-        loaders: [
+        use: [
           {
             loader: 'url-loader',
             options: {

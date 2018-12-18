@@ -1,8 +1,8 @@
 
-import { Action, Reducer } from 'redux'
+import { Action, AnyAction, Reducer } from 'redux'
 
 export interface ActorMap<S> {
-  [name: string]: Reducer<S>
+  [name: string]: (state: S, action: AnyAction) => S
 }
 
 export function buildReducer<S> (initialState: S, map: ActorMap<S>): Reducer<S> {
@@ -13,7 +13,7 @@ export function buildReducer<S> (initialState: S, map: ActorMap<S>): Reducer<S> 
 }
 
 export function buildPassThrough<S extends { id: string }> (childReducer: Reducer<S>): Reducer<{ [id: string]: S }> {
-  return (prev, action: Action & { id: string }) => {
+  return (prev = {}, action: Action & { id: string }) => {
     const { id } = action
     return {
       ...prev,

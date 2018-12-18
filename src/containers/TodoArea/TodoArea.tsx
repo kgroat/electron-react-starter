@@ -1,6 +1,7 @@
 
 import * as React from 'react'
-import { connect, Dispatch } from 'react-redux'
+import { Dispatch } from 'redux'
+import { connect } from 'react-redux'
 
 import { State, Todos } from 'state'
 import { addTodo, toggleTodo, deleteTodo } from 'actions'
@@ -67,7 +68,7 @@ function mapStateToProps ({ todos }: State): StateProps {
   }
 }
 
-function mapDispatchToProps (dispatch: Dispatch<State>): DispatchProps {
+function mapDispatchToProps (dispatch: Dispatch): DispatchProps {
   return {
     addTodo: (name, checked) => dispatch(addTodo({ name, checked })),
     toggleTodo: (id, checked) => dispatch(toggleTodo({ id, checked })),
