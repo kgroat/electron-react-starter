@@ -11,7 +11,7 @@ jobs:
       - checkout
       - restore_cache:
           key: v1-electron-react-app-test-{{ checksum "package-lock.json" }}
-      - run: yarn global add npm@5
+      - run: yarn global add npm@6
       - run: npm install
       - save_cache:
           key: v1-electron-react-app-test-{{ checksum "package-lock.json" }}
@@ -33,7 +33,7 @@ jobs:
       - checkout
       - restore_cache:
           key: v1-electron-react-app-build-{{ checksum "package.json" }}
-      - run: yarn global add npm@5
+      - run: yarn global add npm@6
       - run: npm install
       - run: dpkg --add-architecture i386
       - run: apt update
