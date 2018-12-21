@@ -7,11 +7,11 @@
   "description": "",
   "main": "index.js",
   "platforms": {
-    "darwin": "1.7.10",
-    "linux32": "1.7.10",
-    "linux64": "1.7.10",
-    "win32": "1.7.10",
-    "win64": "1.7.10"
+    "darwin":  "3.0.13",
+    "linux32": "3.0.13",
+    "linux64": "3.0.13",
+    "win32":   "3.0.13",
+    "win64":   "3.0.13"
   },
   "scripts": {
     "test": "run-s -c test:lint test:unit",
