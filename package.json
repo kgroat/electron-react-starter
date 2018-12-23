@@ -7,11 +7,11 @@
   "description": "",
   "main": "index.js",
   "platforms": {
-    "darwin":  "3.0.13",
+    "darwin": "3.0.13",
     "linux32": "3.0.13",
     "linux64": "3.0.13",
-    "win32":   "3.0.13",
-    "win64":   "3.0.13"
+    "win32": "3.0.13",
+    "win64": "3.0.13"
   },
   "scripts": {
     "test": "run-s -c test:lint test:unit",
@@ -95,7 +95,7 @@
     "redux-persist": "^4.9.1",
     "redux-thunk": "^2.2.0",
     "request": "^2.88.0",
-    "resolve-url-loader": "^3.0.0",
+    "resolve-url-loader": "^2.3.1",
     "rimraf": "^2.6.2",
     "roboto-fontface": "^0.8.0",
     "rxjs": "^5.4.3",
